@@ -8,6 +8,7 @@
     android:background="@drawable/login">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,14 +18,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05"/>
+            app:layout_constraintGuide_percent="0.16"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95"/>
+            app:layout_constraintGuide_percent="0.90"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
@@ -60,8 +61,7 @@
             android:layout_marginTop="68dp"
             android:text="Email :"
             android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@id/textInputLayout_mail"
-            app:layout_constraintHorizontal_bias="0.429"
+            app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/title1" />
 
@@ -72,7 +72,8 @@
             android:layout_marginTop="60dp"
             android:hint="Email"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/title1">
+            app:layout_constraintTop_toBottomOf="@+id/title1"
+            >
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -90,10 +91,9 @@
             android:id="@+id/tv_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="40dp"
             android:text="Password :"
             android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@id/textInputLayout_password"
             app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_email" />
@@ -118,28 +118,32 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="LOGIN"
             app:layout_constraintTop_toBottomOf="@id/textInputLayout_password"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/constraint"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             android:textSize="15sp"
+            android:src="@drawable/ic_login"
+            android:background="@color/white"
             />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="SIGN UP "
             app:layout_constraintTop_toBottomOf="@id/btn_login"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/constraint"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             android:textSize="15sp"
+            android:src="@drawable/ic_signup"
+            android:background="@color/white"
             />
 
 
