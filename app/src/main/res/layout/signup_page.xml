@@ -39,6 +39,7 @@
             android:text="Sign up"
             android:layout_marginTop="120dp"
             android:textStyle="bold"
+            android:textColor="@color/text"
             app:layout_constraintTop_toTopOf="@id/constraint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -47,6 +48,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_email"
+            android:textColor="@color/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
@@ -56,28 +58,24 @@
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/title1"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_mail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:hint="Email"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/title1">
 
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_mail"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:textColor="@color/text"
+                android:id="@+id/et_mail"
                 android:layout_width="178dp"
                 android:layout_height="37dp"
                 android:background="@drawable/ic_e_mailframe"
                 android:inputType="textEmailAddress"
                 android:maxLength="20"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/title1" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,26 +85,23 @@
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_email" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_mail">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_password"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:textColor="@color/text"
+                android:id="@+id/et_password"
                 android:layout_width="176dp"
                 android:layout_height="37dp"
                 android:background="@drawable/ic_e_mailframe"
                 android:inputType="textPassword"
                 android:maxLength="20"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/et_mail"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -118,28 +113,23 @@
             app:layout_constraintTop_toBottomOf="@id/tv_password"
             />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Name"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_password">
 
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_name"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:textColor="@color/text"
+                android:id="@+id/et_name"
                 android:layout_width="178dp"
                 android:layout_height="37dp"
                 android:background="@drawable/ic_e_mailframe"
                 android:inputType="text"
                 android:maxLength="20"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/et_password"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_surname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -150,27 +140,22 @@
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_surname"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Surname"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_name">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_surname"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:textColor="@color/text"
+                android:id="@+id/et_surname"
                 android:layout_width="176dp"
                 android:layout_height="37dp"
                 android:inputType="text"
                 android:maxLength="20"
                 android:singleLine="true"
-                android:background="@drawable/ic_e_mailframe"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+                android:background="@drawable/ic_e_mailframe"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/et_name"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -181,58 +166,49 @@
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_surname" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_height"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Height"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_surname">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_height"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_height"
+                android:textColor="@color/text"
                 android:layout_width="176dp"
                 android:layout_height="37dp"
                 android:inputType="number"
                 android:maxLength="20"
                 android:singleLine="true"
-                android:background="@drawable/ic_e_mailframe"/>
+                android:background="@drawable/ic_e_mailframe"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/et_surname"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Weight :"
             android:textSize="15sp"
+            android:text="Weight"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_height" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_weight"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Weight"
-            android:layout_marginTop="10dp"
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:textColor="@color/text"
+            android:id="@+id/et_weight"
+            android:layout_width="176dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/ic_e_mailframe"
+            android:inputType="number"
+            android:maxLength="20"
+            android:singleLine="true"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_height">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_weight"
-                android:layout_width="176dp"
-                android:layout_height="37dp"
-                android:inputType="number"
-                android:maxLength="20"
-                android:singleLine="true"
-                android:background="@drawable/ic_e_mailframe"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/et_height" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -244,33 +220,30 @@
             app:layout_constraintTop_toBottomOf="@id/tv_weight"
             android:layout_marginBottom="140dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_age"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Age"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_weight">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_age"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:textColor="@color/text"
+                android:id="@+id/et_age"
                 android:layout_width="176dp"
                 android:layout_height="37dp"
                 android:inputType="number"
                 android:maxLength="20"
                 android:singleLine="true"
-                android:background="@drawable/ic_e_mailframe"/>
+                android:background="@drawable/ic_e_mailframe"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/et_weight"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_age"
+            app:layout_constraintTop_toBottomOf="@id/et_age"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+
+            >
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/sign_btn"
