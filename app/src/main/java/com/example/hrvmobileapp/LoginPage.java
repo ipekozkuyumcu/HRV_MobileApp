@@ -94,7 +94,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent intent = new Intent(LoginPage.this,HomePage.class);
+                    Intent intent = new Intent(LoginPage.this,ProfilePage.class);
                     startActivity(intent);
 
                 }else{

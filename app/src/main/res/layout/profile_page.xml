@@ -43,6 +43,7 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +59,8 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_email"
+            android:textColor="@color/text"
+            android:id="@+id/tv_mail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
@@ -68,28 +70,25 @@
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/title1"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_mail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:hint="abcd@hotmail.com"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/title1">
 
+        <androidx.appcompat.widget.AppCompatTextView
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_mail"
+            android:textColor="@color/text"
+                android:id="@+id/fb_mail"
                 android:layout_width="178dp"
                 android:layout_height="37dp"
                 android:background="@drawable/ic_e_mailframe"
                 android:inputType="textEmailAddress"
                 android:maxLength="20"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:layout_marginTop="50dp"
+                android:hint="abcd@hotmail.com"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/title1"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,28 +96,25 @@
             android:text="Password :"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/tv_email" />
+            app:layout_constraintTop_toBottomOf="@id/tv_mail" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="********"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_mail">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_password"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textColor="@color/text"
+                android:id="@+id/fb_password"
                 android:layout_width="176dp"
                 android:layout_height="37dp"
                 android:background="@drawable/ic_e_mailframe"
                 android:inputType="textPassword"
                 android:maxLength="20"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:hint="********"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/fb_mail"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,28 +126,24 @@
             app:layout_constraintTop_toBottomOf="@id/tv_password"
             />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Jane"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_password">
 
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_name"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
+                android:id="@+id/fb_name"
                 android:layout_width="178dp"
                 android:layout_height="37dp"
                 android:background="@drawable/ic_e_mailframe"
                 android:inputType="text"
                 android:maxLength="20"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:hint="Jane"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/fb_password"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_surname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,27 +154,24 @@
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_surname"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Dunphy"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_name">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_surname"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textColor="@color/text"
+                android:id="@+id/fb_surname"
                 android:layout_width="176dp"
                 android:layout_height="37dp"
                 android:inputType="text"
                 android:maxLength="20"
                 android:singleLine="true"
-                android:background="@drawable/ic_e_mailframe"/>
+                android:background="@drawable/ic_e_mailframe"
+                android:hint="Dunphy"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/fb_name"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -193,27 +182,25 @@
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_surname" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_height"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="1.65 cm"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_surname">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_height"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textColor="@color/text"
+                android:id="@+id/fb_height"
                 android:layout_width="176dp"
                 android:layout_height="37dp"
                 android:inputType="number"
                 android:maxLength="20"
                 android:singleLine="true"
-                android:background="@drawable/ic_e_mailframe"/>
+                android:background="@drawable/ic_e_mailframe"
+                android:hint="1.65 cm"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/fb_surname"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -224,27 +211,24 @@
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_height" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_weight"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="52 kg"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_height">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_weight"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textColor="@color/text"
+                android:id="@+id/fb_weight"
                 android:layout_width="176dp"
                 android:layout_height="37dp"
                 android:inputType="number"
                 android:maxLength="20"
                 android:singleLine="true"
-                android:background="@drawable/ic_e_mailframe"/>
+                android:background="@drawable/ic_e_mailframe"
+                android:hint="52 kg"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/fb_height"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/text"
             android:id="@+id/tv_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -256,31 +240,29 @@
             app:layout_constraintTop_toBottomOf="@id/tv_weight"
             android:layout_marginBottom="140dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout_age"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="24"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout_weight">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_age"
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:textColor="@color/text"
+                android:id="@+id/fb_age"
                 android:layout_width="176dp"
                 android:layout_height="37dp"
                 android:inputType="number"
                 android:maxLength="20"
                 android:singleLine="true"
-                android:background="@drawable/ic_e_mailframe"/>
+                android:background="@drawable/ic_e_mailframe"
+                android:hint="24"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@id/fb_weight"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_marginTop="10dp"
-    app:layout_constraintTop_toBottomOf="@id/textInputLayout_age"
+    app:layout_constraintTop_toBottomOf="@id/fb_age"
     app:layout_constraintStart_toStartOf="@+id/guideline"
     app:layout_constraintEnd_toEndOf="@id/guideline2"
 
