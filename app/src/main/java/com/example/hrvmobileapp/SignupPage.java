@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
-public class SignupPage extends AppCompatActivity implements View.OnClickListener  {
+public class SignupPage extends AppCompatActivity   {
 
     private SignupPageBinding binding_sign;
     private FirebaseAuth mAuth;
@@ -33,18 +33,18 @@ public class SignupPage extends AppCompatActivity implements View.OnClickListene
 
 
         mAuth = FirebaseAuth.getInstance();
-    binding_sign.signBtn.setOnClickListener(this);
-    binding_sign.logBtn.setOnClickListener(this);
 
-      /* binding_sign.signBtn.setOnClickListener(new View.OnClickListener() {
+
+
+      binding_sign.signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signUp();
-                //Intent intent = new Intent(getApplicationContext(),HomePage.class);
-                //startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),HomePage.class);
+                startActivity(intent);
             }
         });
-
+ /*
         binding_sign.logBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +66,9 @@ public class SignupPage extends AppCompatActivity implements View.OnClickListene
         String height =binding_sign.etHeight.getText().toString().trim();
         String weight =binding_sign.etWeight.getText().toString().trim();
         String age =binding_sign.etAge.getText().toString().trim();
+
+        String resting = binding_sign.etAge.getText().toString().trim();
+        String cold = binding_sign.etAge.getText().toString().trim();
 
         if(mail.isEmpty()){
             binding_sign.etMail.setError("Mail is required");
@@ -122,6 +125,11 @@ public class SignupPage extends AppCompatActivity implements View.OnClickListene
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             User user = new User(mail,password,name,surname,height,weight,age);
+                            HrvData hrvData = new HrvData(resting,cold);
+
+                            FirebaseDatabase.getInstance().getReference("hrvData")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(hrvData);
 
                             FirebaseDatabase.getInstance().getReference("users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -146,20 +154,8 @@ public class SignupPage extends AppCompatActivity implements View.OnClickListene
                 });
 
 
-    }
+    }//signup
 
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.log_btn:
-                Intent intent = new Intent(this,LoginPage.class);
-                startActivity(intent);
-                break;
-            case R.id.sign_btn:
-              signUp();
-              break;
-        }
 
-    }
 }
