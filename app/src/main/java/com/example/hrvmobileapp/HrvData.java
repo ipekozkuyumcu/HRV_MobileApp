@@ -2,7 +2,8 @@ package com.example.hrvmobileapp;
 
 public class HrvData {
 
-    public String resting, cold;
+    public String resting;
+    public String cold;
 
 
     public HrvData() { }

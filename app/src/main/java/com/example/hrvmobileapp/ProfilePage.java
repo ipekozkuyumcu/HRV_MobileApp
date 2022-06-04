@@ -21,7 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfilePage extends AppCompatActivity {
 
     private FirebaseAuth profileAuth;
-
+    DatabaseReference reference;
+    FirebaseUser fu;
     private ProfilePageBinding binding_profile;
     private String mail, password, name, surname, height, weight, age;
 
@@ -32,6 +33,7 @@ public class ProfilePage extends AppCompatActivity {
         View view = binding_profile.getRoot();
         setContentView(view);
 
+        reference = FirebaseDatabase.getInstance().getReference("users");
         profileAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = profileAuth.getCurrentUser();
         
@@ -40,6 +42,7 @@ public class ProfilePage extends AppCompatActivity {
         }
         else{
             showProfileData(firebaseUser);
+
         }
 
 
@@ -50,13 +53,20 @@ public class ProfilePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        binding_profile.saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateData(view);
+
+            }
+        });
+
 
     }//onCreate
 
     private void showProfileData(FirebaseUser firebaseUser){
         String userId = firebaseUser.getUid();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -79,6 +89,7 @@ public class ProfilePage extends AppCompatActivity {
                     binding_profile.fbAge.setText(age);
 
 
+
                 }
 
             }
@@ -89,6 +100,99 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
     }//showuserdata
+
+    private void updateData(View view){
+        if(isMailChanged()|| isPasswordChanged()||isNameChanged()||isSurnameChanged()
+        ||isWeightChanged()|| isHeightChanged()||isAgeChanged()){
+            Toast.makeText(this, "Data has been updated",Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+    private boolean isMailChanged(){
+
+        if(!mail.equals(binding_profile.fbMail.getText().toString())){
+            reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("mail").setValue(binding_profile.fbMail.getText().toString());
+            return true;
+
+
+        }else{
+            return false;
+        }
+
+    }
+
+    private boolean isPasswordChanged(){
+        if(!password.equals(binding_profile.fbPassword.getEditableText().toString())){
+            reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("password").setValue(binding_profile.fbPassword.getEditableText().toString());
+            return true;
+
+
+        }else{
+            return false;
+        }
+
+    }
+
+    private boolean isNameChanged(){
+
+        if(!name.equals(binding_profile.fbName.getText().toString())){
+            reference .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("name").setValue(binding_profile.fbName.getText().toString());
+            return true;
+
+
+        }else{
+            return false;
+        }
+
+    }
+    private boolean isSurnameChanged(){
+        if(!surname.equals(binding_profile.fbSurname.getEditableText().toString())){
+            reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("surname").setValue(binding_profile.fbSurname.getEditableText().toString());
+            return true;
+
+
+        }else{
+            return false;
+        }
+
+    }
+
+    private boolean isWeightChanged(){
+        if(!weight.equals(binding_profile.fbWeight.getEditableText().toString())){
+            reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("weight").setValue(binding_profile.fbWeight.getEditableText().toString());
+            return true;
+
+
+        }else{
+            return false;
+        }
+
+    }
+
+    private boolean isHeightChanged(){
+        if(!height.equals(binding_profile.fbHeight.getEditableText().toString())){
+            reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("height").setValue(binding_profile.fbHeight.getEditableText().toString());
+            return true;
+
+
+        }else{
+            return false;
+        }
+
+    }
+
+    private boolean isAgeChanged(){
+        if(!age.equals(binding_profile.fbAge.getEditableText().toString())){
+            reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("age").setValue(binding_profile.fbAge.getEditableText().toString());
+            return true;
+
+
+        }else{
+            return false;
+        }
+
+    }
 
 
 
