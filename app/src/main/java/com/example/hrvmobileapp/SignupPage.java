@@ -40,7 +40,7 @@ public class SignupPage extends AppCompatActivity   {
             @Override
             public void onClick(View view) {
                 signUp();
-                Intent intent = new Intent(getApplicationContext(),HomePage.class);
+                Intent intent = new Intent(getApplicationContext(),LoginPage.class);
                 startActivity(intent);
             }
         });
@@ -67,8 +67,8 @@ public class SignupPage extends AppCompatActivity   {
         String weight =binding_sign.etWeight.getText().toString().trim();
         String age =binding_sign.etAge.getText().toString().trim();
 
-        String resting = binding_sign.etAge.getText().toString().trim();
-        String cold = binding_sign.etAge.getText().toString().trim();
+    //   String resting = binding_sign.etAge.getText().toString().trim();
+    //   String cold = binding_sign.etAge.getText().toString().trim();
 
         if(mail.isEmpty()){
             binding_sign.etMail.setError("Mail is required");
@@ -125,11 +125,7 @@ public class SignupPage extends AppCompatActivity   {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             User user = new User(mail,password,name,surname,height,weight,age);
-                            HrvData hrvData = new HrvData(resting,cold);
 
-                            FirebaseDatabase.getInstance().getReference("hrvData")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(hrvData);
 
                             FirebaseDatabase.getInstance().getReference("users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

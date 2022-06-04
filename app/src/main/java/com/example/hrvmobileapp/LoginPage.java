@@ -17,11 +17,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.PointsGraphSeries;
 
-public class LoginPage extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+
+public class LoginPage extends AppCompatActivity {
 
     private LoginPageBinding binding;
     private FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,31 +36,33 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
         binding = LoginPageBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        //Auth
          mAuth = FirebaseAuth.getInstance();
 
-        binding.btnLogin.setOnClickListener(this);
-        binding.btnSignup.setOnClickListener(this);
 
 
-      /*  binding.btnSignup.setOnClickListener(new View.OnClickListener() {
+         binding.btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignupPage.class);
                 startActivity(intent);
             }
         });
+
+
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomePage.class);
-                startActivity(intent);
+              logIn();
+
             }
-        }); */
+        });
 
     }//onCreate
 
 
-    @Override
+   /* @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_login:
@@ -66,7 +75,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
                 break;
         }
 
-    }
+    }*/
 
     private void logIn(){
         String mail = binding.etMail.getText().toString().trim();
@@ -97,7 +106,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent intent = new Intent(LoginPage.this,ProfilePage.class);
+                    Intent intent = new Intent(LoginPage.this,HomePage.class);
                     startActivity(intent);
 
                 }else{
