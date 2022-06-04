@@ -61,6 +61,28 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
 
+        binding_profile.fbMail.setEnabled(false);
+        binding_profile.fbPassword.setEnabled(false);
+        binding_profile.fbName.setEnabled(false);
+        binding_profile.fbSurname.setEnabled(false);
+        binding_profile.fbWeight.setEnabled(false);
+        binding_profile.fbHeight.setEnabled(false);
+        binding_profile.fbAge.setEnabled(false);
+
+        binding_profile.editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding_profile.fbMail.setEnabled(true);
+                binding_profile.fbPassword.setEnabled(true);
+                binding_profile.fbName.setEnabled(true);
+                binding_profile.fbSurname.setEnabled(true);
+                binding_profile.fbWeight.setEnabled(true);
+                binding_profile.fbHeight.setEnabled(true);
+                binding_profile.fbAge.setEnabled(true);
+
+            }
+        });
+
 
     }//onCreate
 
