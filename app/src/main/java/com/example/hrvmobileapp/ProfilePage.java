@@ -22,7 +22,6 @@ public class ProfilePage extends AppCompatActivity {
 
     private FirebaseAuth profileAuth;
     DatabaseReference reference;
-    FirebaseUser fu;
     private ProfilePageBinding binding_profile;
     private String mail, password, name, surname, height, weight, age;
 
@@ -72,7 +71,6 @@ public class ProfilePage extends AppCompatActivity {
         binding_profile.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding_profile.fbMail.setEnabled(true);
                 binding_profile.fbPassword.setEnabled(true);
                 binding_profile.fbName.setEnabled(true);
                 binding_profile.fbSurname.setEnabled(true);
