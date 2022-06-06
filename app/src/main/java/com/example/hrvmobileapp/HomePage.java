@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
@@ -24,17 +25,21 @@ import com.jjoe64.graphview.series.PointsGraphSeries;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class HomePage extends AppCompatActivity {
     public String mail,resting, cold;
     private HomePageBinding binding_home;
 
+
     DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
   //  FirebaseUser firebaseUser;
     PointsGraphSeries<DataPoint> series;
     GraphView graphView;
+    ArrayList<String> value_string;
+    ArrayList<Double> value_double;
     private DateFormat sdf = new SimpleDateFormat("HH:mm:ss.SS");
 
 
@@ -53,20 +58,25 @@ public class HomePage extends AppCompatActivity {
         series = new PointsGraphSeries<>();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-
-
-        for (int i = 0; i <3 ; i++) {
-            reference =firebaseDatabase.getReference("hrvData")
+        value_string = new ArrayList<>();
+        value_double= new ArrayList<>();
+        for (int i = 0; i < 12000 ; i++) {
+            reference = firebaseDatabase.getReference("hrvData")
                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .child(String.valueOf(i));
+            .child(String.valueOf(i));
+
+            showHrvData();
 
 
         }
 
 
-        showHrvData();
+
+
+
         graphView.addSeries(series);
         graphView.getGridLabelRenderer().setNumHorizontalLabels(5);
+        graphView.getGridLabelRenderer().setNumVerticalLabels(5);
         graphView.getViewport().setScalable(true);
         graphView.getViewport().setYAxisBoundsManual(true); // Prevents auto-rescaling the Y-axis
         graphView.getViewport().setXAxisBoundsManual(true);
@@ -79,6 +89,8 @@ public class HomePage extends AppCompatActivity {
         series.setShape(PointsGraphSeries.Shape.RECTANGLE);
         graphView.getViewport().setScalableY(true);
         series.setColor(Color.rgb(117,53,173));
+        graphView.getGridLabelRenderer().setTextSize(12f);
+
 
 
 
@@ -99,36 +111,43 @@ public class HomePage extends AppCompatActivity {
 
 
     private void showHrvData(){
-
         reference.addValueEventListener(new ValueEventListener() {
 
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    HrvData value = snapshot.getValue(HrvData.class);
-                    ArrayList<String> value_string = new ArrayList<>();
-                    value_string.add(value.resting);
-                    value_string.add(value.cold);
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                HrvData value = snapshot.getValue(HrvData.class);
+
+                value_double.add(value.hrv);
+                value_string.add(value.time);
+
+                double y;
+               long x = new Date().getTime();
+
+                y = value_double.get(0);
+              //  x = Long.parseLong(sdf.format(new Date(value_string.get(0)).getTime()));
+
+                series.appendData(new DataPoint(x,y), true, 100);
+
+                graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
+                    @Override
+                    public String formatLabel(double value, boolean isValueX) {
+                        if(isValueX){
+                            return sdf.format(x);
+                        }
+                        return super.formatLabel(value, isValueX);
+                    }
+                });
 
 
 
-                   // binding_home.fbResting.setText(value.resting);
-                    // binding_home.fbCold.setText(value.cold);
-                    double x;
-                    double y;
-
-                    x = Double.parseDouble(value_string.get(0));
-                    y = Double.parseDouble(value_string.get(1));
-                    series.appendData(new DataPoint(x, y), true, 10);
+            }//ondatachange
 
 
-                }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
+            }
+        });
 
 
 

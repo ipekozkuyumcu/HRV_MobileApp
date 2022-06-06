@@ -2,14 +2,14 @@ package com.example.hrvmobileapp;
 
 public class HrvData {
 
-    public String resting;
-    public String cold;
+    public double hrv;
+    public String time;
 
 
     public HrvData() { }
 
-    public HrvData(String resting, String cold){
-        this.resting = resting;
-        this.cold = cold;
+    public HrvData(double hrv, String time){
+        this.hrv = hrv;
+        this.time = time;
     }
 }
