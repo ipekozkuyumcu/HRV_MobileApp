@@ -41,7 +41,7 @@ public class HomePage extends AppCompatActivity {
     GraphView graphView;
    // ArrayList<String> value_string;
    // ArrayList<Double> value_double;
-    private DateFormat sdf = new SimpleDateFormat("HH:mm:ss.SS");
+    private DateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
 
 
 
@@ -67,13 +67,7 @@ public class HomePage extends AppCompatActivity {
                     .child(String.valueOf(i));
 
             showHrvData();
-
-
         }
-
-
-
-
 
         graphView.addSeries(series);
         graphView.getGridLabelRenderer().setNumHorizontalLabels(5);
@@ -87,16 +81,21 @@ public class HomePage extends AppCompatActivity {
         viewport.setMinX(0);
         viewport.setScrollable(true);
         viewport.setScalable(true);
+        viewport.setMaxY(2);
         series.setShape(PointsGraphSeries.Shape.RECTANGLE);
         graphView.getViewport().setScalableY(true);
         series.setColor(Color.rgb(117,53,173));
-        graphView.getGridLabelRenderer().setTextSize(12f);
+        graphView.getGridLabelRenderer().setTextSize(24f);
 
-
-
-
-
-
+        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if(isValueX){
+                    return sdf.format(value);
+                }
+                return super.formatLabel(value, isValueX);
+            }
+        });
 
         binding_home.profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,36 +106,24 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-
-
-
-
     private void showHrvData(){
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                HrvData value = snapshot.getValue(HrvData.class);
+                try {
+                    HrvData value = snapshot.getValue(HrvData.class);
+                    if (value != null) {
+                        Date dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS")
+                                .parse("01.01.2000 " + value.time);
 
+                        double y = value.hrv;
+                        series.appendData(new DataPoint(dt,y), true, 13000);
 
-                double y;
-               // double x = Double.parseDouble(value.time);
-                y = value.hrv;
-                long x = new Date().getTime();
-                series.appendData(new DataPoint(x,y), true, 13000);
-
-
-                graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
-                    @Override
-                    public String formatLabel(double value, boolean isValueX) {
-                        if(isValueX){
-                            return sdf.format(x);
-                        }
-                        return super.formatLabel(value, isValueX);
                     }
-                });
-
-
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }//ondatachange
 
 

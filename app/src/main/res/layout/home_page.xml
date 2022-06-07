@@ -46,12 +46,66 @@
             app:layout_constraintTop_toBottomOf="@+id/fb_cold"/>
 
         <com.jjoe64.graphview.GraphView
+            android:id="@+id/graphId"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:id="@+id/graphId"
             app:layout_constraintTop_toBottomOf="@id/dummy_view"
 
-            />
+            tools:layout_editor_absoluteX="16dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_resting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
+            android:text="Resting :"
+            android:textColor="@color/text"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/title1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+
+            android:id="@+id/fb_resting"
+            android:layout_width="178dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_e_mailframe"
+            android:hint="Resting hr-hrv"
+            android:maxLength="20"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/title1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_cold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="Cold Water :"
+            android:textColor="@color/text"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/tv_resting" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fb_cold"
+            android:layout_width="176dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_e_mailframe"
+            android:hint="Cold hr-hrv"
+            android:inputType="text"
+            android:maxLength="20"
+            android:singleLine="true"
+            android:textColor="@color/text"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@id/fb_resting" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title1"
@@ -67,76 +121,6 @@
             app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/constraint" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_resting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="60dp"
-            android:text="Resting :"
-            android:textColor="@color/text"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/title1" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-
-            android:id="@+id/fb_resting"
-            android:layout_width="178dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/ic_e_mailframe"
-            android:hint="Resting hr-hrv"
-            android:maxLength="20"
-            android:singleLine="true"
-            android:textColor="@color/text"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/title1" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_cold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
-            android:text="Cold Water :"
-            android:textColor="@color/text"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/tv_resting" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fb_cold"
-            android:layout_width="176dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/ic_e_mailframe"
-            android:hint="Cold hr-hrv"
-            android:inputType="text"
-            android:maxLength="20"
-            android:singleLine="true"
-            android:textColor="@color/text"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/fb_resting" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
