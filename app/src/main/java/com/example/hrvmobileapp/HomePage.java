@@ -23,6 +23,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,11 +36,11 @@ public class HomePage extends AppCompatActivity {
 
     DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
-  //  FirebaseUser firebaseUser;
+    //  FirebaseUser firebaseUser;
     PointsGraphSeries<DataPoint> series;
     GraphView graphView;
-    ArrayList<String> value_string;
-    ArrayList<Double> value_double;
+   // ArrayList<String> value_string;
+   // ArrayList<Double> value_double;
     private DateFormat sdf = new SimpleDateFormat("HH:mm:ss.SS");
 
 
@@ -58,12 +59,12 @@ public class HomePage extends AppCompatActivity {
         series = new PointsGraphSeries<>();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        value_string = new ArrayList<>();
-        value_double= new ArrayList<>();
-        for (int i = 0; i < 12000 ; i++) {
+     //   value_string = new ArrayList<>();
+     //   value_double= new ArrayList<>();
+        for (int i = 0; i < 12999; i++) {
             reference = firebaseDatabase.getReference("hrvData")
                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-            .child(String.valueOf(i));
+                    .child(String.valueOf(i));
 
             showHrvData();
 
@@ -117,16 +118,13 @@ public class HomePage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 HrvData value = snapshot.getValue(HrvData.class);
 
-                value_double.add(value.hrv);
-                value_string.add(value.time);
 
                 double y;
-               long x = new Date().getTime();
+               // double x = Double.parseDouble(value.time);
+                y = value.hrv;
+                long x = new Date().getTime();
+                series.appendData(new DataPoint(x,y), true, 13000);
 
-                y = value_double.get(0);
-              //  x = Long.parseLong(sdf.format(new Date(value_string.get(0)).getTime()));
-
-                series.appendData(new DataPoint(x,y), true, 100);
 
                 graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
                     @Override
@@ -137,7 +135,6 @@ public class HomePage extends AppCompatActivity {
                         return super.formatLabel(value, isValueX);
                     }
                 });
-
 
 
             }//ondatachange

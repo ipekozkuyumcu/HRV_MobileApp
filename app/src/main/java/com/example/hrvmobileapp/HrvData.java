@@ -8,7 +8,7 @@ public class HrvData {
 
     public HrvData() { }
 
-    public HrvData(double hrv, String time){
+    public HrvData(double hrv , String time){
         this.hrv = hrv;
         this.time = time;
     }

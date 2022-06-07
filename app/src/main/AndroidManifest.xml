@@ -9,12 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HRVMobileApp">
         <activity android:name=".LoginPage"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true">  <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
 
         </activity>
         <activity
@@ -23,7 +22,8 @@
         <activity
             android:name=".SignupPage">
         </activity>
-        <activity android:name=".HomePage" />
+        <activity android:name=".HomePage">
+            </activity>
         <activity android:name=".ProfilePage" />
     </application>
 
