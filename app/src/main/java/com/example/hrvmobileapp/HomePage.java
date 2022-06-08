@@ -29,22 +29,24 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 
 public class HomePage extends AppCompatActivity {
     private HomePageBinding binding_home;
 
-
-    DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
 
     PointsGraphSeries<DataPoint> series;
     Dialog dialog;
     GraphView graphView;
-    DateFormat sdf = new SimpleDateFormat("HH:mm:ss.SS");
+    DateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
 
-
-
+    Map<String, Double> htSeries = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,18 +68,7 @@ public class HomePage extends AppCompatActivity {
         //popup
         dialog = new Dialog(this);
 
-
-
-        for (int i = 0; i < 12999; i++) {
-            reference = firebaseDatabase.getReference("hrvData")
-                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .child(String.valueOf(i));
-
-            showHrvData();
-        }
-
-
-        graphView.addSeries(series);
+        showHrvData();
         graphView.getGridLabelRenderer().setNumHorizontalLabels(5);
         graphView.getGridLabelRenderer().setNumVerticalLabels(5);
         graphView.getViewport().setScalable(true);
@@ -89,11 +80,21 @@ public class HomePage extends AppCompatActivity {
         viewport.setMinX(0);
         viewport.setScrollable(true);
         viewport.setScalable(true);
+        viewport.setMaxY(2);
         series.setShape(PointsGraphSeries.Shape.RECTANGLE);
         graphView.getViewport().setScalableY(true);
         series.setColor(Color.rgb(117,53,173));
-        graphView.getGridLabelRenderer().setTextSize(12f);
+        graphView.getGridLabelRenderer().setTextSize(24f);
 
+        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if(isValueX){
+                    return sdf.format(value);
+                }
+                return super.formatLabel(value, isValueX);
+            }
+        });
 
 
         binding_home.profileBtn.setOnClickListener(new View.OnClickListener() {
@@ -105,55 +106,48 @@ public class HomePage extends AppCompatActivity {
         });
     }//oncreate
 
-
-
     private void showHrvData(){
+        DatabaseReference reference = firebaseDatabase.getReference("hrvData")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reference.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                HrvData value = snapshot.getValue(HrvData.class);
                 try {
-                    if (value != null) {
-                        Date dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS")
-                                .parse("01.01.2000 " + value.time);
-
-                        double y = value.hrv;
-                        series.appendData(new DataPoint(dt,y), true, 13000);
-
-                    }
-                } catch (ParseException e) {
-                        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
-                            @Override
-                            public String formatLabel(double value, boolean isValueX) {
-                                if(isValueX){
-                                    return sdf.format(dt);
-                                }
-                                return super.formatLabel(value, isValueX);
+                    for (DataSnapshot i :  snapshot.getChildren())
+                    {
+                        HrvData value = i.getValue(HrvData.class);
+                        if (value != null) {
+                            if (!htSeries.containsKey("01.01.2000 " + value.time)) {
+                                htSeries.put("01.01.2000 " + value.time, value.hrv);
                             }
-                        });
-
-
-                        double thres = 1.3;
-                        if(thres > y) {
-
-                            dialog.setContentView(R.layout.pop_window);
-                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                            dialog.show();
                         }
-                    }//if
-                }
-                catch (ParseException e) {
+                    }
+
+
+                    for (String key: new TreeMap<>(htSeries).keySet()) {
+                        try {
+                            Date dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS")
+                                    .parse(key);
+
+                            double y = htSeries.get(key);
+                            series.appendData(new DataPoint(dt, y), true, 130000);
+
+                            double thres = 1.3;
+                            if (thres > y) {
+                                dialog.setContentView(R.layout.pop_window);
+                                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                dialog.show();
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    graphView.addSeries(series);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
-                 //  long x = new Date().getTime();
-                 //  long x = Long.parseLong(value.time);
-                // series.appendData(new DataPoint(x,y), true, 13000 );
-
-            }//ondatachange
-
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
