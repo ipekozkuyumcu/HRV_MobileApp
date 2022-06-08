@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -75,7 +76,7 @@ public class HomePage extends AppCompatActivity {
         graphView.getViewport().setYAxisBoundsManual(true); // Prevents auto-rescaling the Y-axis
         graphView.getViewport().setXAxisBoundsManual(true);
         Viewport viewport = graphView.getViewport();
-        viewport.setYAxisBoundsManual(true);
+        //viewport.setYAxisBoundsManual(true);
         viewport.setMinY(0);
         viewport.setMinX(0);
         viewport.setScrollable(true);
@@ -118,6 +119,8 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 try {
+                    graphView.addSeries(series);
+
                     for (DataSnapshot i :  snapshot.getChildren())
                     {
                         HrvData value = i.getValue(HrvData.class);
@@ -128,27 +131,23 @@ public class HomePage extends AppCompatActivity {
                         }
                     }
 
-
                     for (String key: new TreeMap<>(htSeries).keySet()) {
                         try {
                             Date dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS")
                                     .parse(key);
-
                             double y = htSeries.get(key);
                             series.appendData(new DataPoint(dt, y), true, 130000);
-
-                            double thres = 1.3;
-                            if (thres > y) {
-                                dialog.setContentView(R.layout.pop_window);
-                                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                dialog.show();
-                            }
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
                     }
 
-                    graphView.addSeries(series);
+                    new Handler().postDelayed(new Runnable(){
+                        @Override
+                        public void run() {
+                            checkAlerts();
+                        }
+                    }, 5000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -162,5 +161,24 @@ public class HomePage extends AppCompatActivity {
 
     }//showuserdata
 
+    public void checkAlerts() {
+        for (String key: new TreeMap<>(htSeries).keySet()) {
+            double y = htSeries.get(key);
+            double thres1 = 1.8;
+            double thres2 = 0.1;
+            if (thres1 < y) {
+                dialog.setContentView(R.layout.pop_window);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+                break;
+            }
+            else if (thres2 > y) {
+                dialog.setContentView(R.layout.pop_window);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+                break;
+            }
+        }
+    }
 
 }
