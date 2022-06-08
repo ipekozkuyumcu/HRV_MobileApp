@@ -7,6 +7,7 @@
     android:background="@drawable/frame"
     tools:context=".HomePage">
     <TextView
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/time"
@@ -16,6 +17,7 @@
         android:text="TIME "/>
 
     <TextView
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/hrv"
@@ -24,15 +26,17 @@
         android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:text="!HRV!"/>
+
     <TextView
+        android:textColor="@color/black"
+        android:id="@+id/warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/warning"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/hrv"
-        android:textSize="14sp"
         android:layout_centerHorizontal="true"
-        android:text="Your HRV is significantly low, you should be careful about your health!"/>
+        android:layout_marginTop="10dp"
+        android:text="Your HRV is significantly low, you should be careful about your health!"
+        android:textSize="14sp" />
 
 
 

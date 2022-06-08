@@ -81,10 +81,15 @@ public class HomePage extends AppCompatActivity {
         viewport.setScrollable(true);
         viewport.setScalable(true);
         viewport.setMaxY(2);
-        series.setShape(PointsGraphSeries.Shape.RECTANGLE);
+        series.setShape(PointsGraphSeries.Shape.POINT);
+        series.setSize(8);
         graphView.getViewport().setScalableY(true);
         series.setColor(Color.rgb(117,53,173));
-        graphView.getGridLabelRenderer().setTextSize(24f);
+        graphView.getGridLabelRenderer().setTextSize(12f);
+        graphView.getGridLabelRenderer().setGridColor(Color.BLACK);
+        graphView.getGridLabelRenderer().setVerticalLabelsColor(Color.BLACK);
+        graphView.getGridLabelRenderer().setHorizontalLabelsColor(Color.BLACK);
+
 
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
             @Override
@@ -107,7 +112,7 @@ public class HomePage extends AppCompatActivity {
     }//oncreate
 
     private void showHrvData(){
-        DatabaseReference reference = firebaseDatabase.getReference("hrvData")
+                DatabaseReference reference = firebaseDatabase.getReference("hrvData")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
