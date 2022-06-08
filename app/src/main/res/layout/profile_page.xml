@@ -14,7 +14,7 @@
 
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/home_Btn"
+            android:id="@+id/home_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -258,6 +258,7 @@
 
 
 <LinearLayout
+    android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -265,7 +266,6 @@
     app:layout_constraintTop_toBottomOf="@id/fb_age"
     app:layout_constraintStart_toStartOf="@+id/guideline"
     app:layout_constraintEnd_toEndOf="@id/guideline2"
-
     android:gravity="center_horizontal">
 
         <androidx.appcompat.widget.AppCompatImageButton
@@ -296,6 +296,33 @@
 
 
 </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/linear"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            android:gravity="center_horizontal">
+
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/logout_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="LOGOUT"
+                android:textSize="15sp"
+                android:src="@drawable/ic_logout"
+                android:background="@color/white"
+                />
+
+
+
+
+
+        </LinearLayout>
 
 
 

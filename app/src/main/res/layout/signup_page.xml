@@ -242,9 +242,7 @@
             app:layout_constraintTop_toBottomOf="@id/et_age"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            android:gravity="center_horizontal"
-
-            >
+            android:gravity="center_horizontal">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/sign_btn"
@@ -260,7 +258,16 @@
 
         </LinearLayout>
 
-
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="29dp"
+            android:layout_height="31dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@id/et_age"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            android:backgroundTint="@color/mycolor"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

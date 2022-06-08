@@ -44,6 +44,19 @@ public class ProfilePage extends AppCompatActivity {
 
         }
 
+        binding_profile.logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logOut();
+                Intent intent = new Intent(getApplicationContext(), LoginPage.class);
+                startActivity(intent);
+
+
+            }
+        });
+
+
+
 
         binding_profile.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +96,10 @@ public class ProfilePage extends AppCompatActivity {
 
 
     }//onCreate
+
+    private void logOut(){
+        profileAuth.signOut();
+    }
 
     private void showProfileData(FirebaseUser firebaseUser){
         String userId = firebaseUser.getUid();

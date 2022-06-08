@@ -1,7 +1,9 @@
 package com.example.hrvmobileapp;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 
@@ -30,18 +32,16 @@ import java.util.Date;
 
 
 public class HomePage extends AppCompatActivity {
-    public String mail,resting, cold;
     private HomePageBinding binding_home;
 
 
     DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
-    //  FirebaseUser firebaseUser;
+
     PointsGraphSeries<DataPoint> series;
+    Dialog dialog;
     GraphView graphView;
-   // ArrayList<String> value_string;
-   // ArrayList<Double> value_double;
-    private DateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+    DateFormat sdf = new SimpleDateFormat("HH:mm:ss.SS");
 
 
 
@@ -52,15 +52,22 @@ public class HomePage extends AppCompatActivity {
         binding_home = HomePageBinding.inflate(getLayoutInflater());
         View view = binding_home.getRoot();
         setContentView(view);
+        //   value_string = new ArrayList<>();
+        //   value_double= new ArrayList<>();
 
 
-
-        graphView = binding_home.graphId;
-        series = new PointsGraphSeries<>();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-     //   value_string = new ArrayList<>();
-     //   value_double= new ArrayList<>();
+        //graph
+        graphView = binding_home.graphId;
+        series = new PointsGraphSeries<>();
+
+
+        //popup
+        dialog = new Dialog(this);
+
+
+
         for (int i = 0; i < 12999; i++) {
             reference = firebaseDatabase.getReference("hrvData")
                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -68,6 +75,7 @@ public class HomePage extends AppCompatActivity {
 
             showHrvData();
         }
+
 
         graphView.addSeries(series);
         graphView.getGridLabelRenderer().setNumHorizontalLabels(5);
@@ -81,21 +89,12 @@ public class HomePage extends AppCompatActivity {
         viewport.setMinX(0);
         viewport.setScrollable(true);
         viewport.setScalable(true);
-        viewport.setMaxY(2);
         series.setShape(PointsGraphSeries.Shape.RECTANGLE);
         graphView.getViewport().setScalableY(true);
         series.setColor(Color.rgb(117,53,173));
-        graphView.getGridLabelRenderer().setTextSize(24f);
+        graphView.getGridLabelRenderer().setTextSize(12f);
 
-        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
-            @Override
-            public String formatLabel(double value, boolean isValueX) {
-                if(isValueX){
-                    return sdf.format(value);
-                }
-                return super.formatLabel(value, isValueX);
-            }
-        });
+
 
         binding_home.profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,15 +103,17 @@ public class HomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
+    }//oncreate
+
+
 
     private void showHrvData(){
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                HrvData value = snapshot.getValue(HrvData.class);
                 try {
-                    HrvData value = snapshot.getValue(HrvData.class);
                     if (value != null) {
                         Date dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS")
                                 .parse("01.01.2000 " + value.time);
@@ -122,8 +123,35 @@ public class HomePage extends AppCompatActivity {
 
                     }
                 } catch (ParseException e) {
+                        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
+                            @Override
+                            public String formatLabel(double value, boolean isValueX) {
+                                if(isValueX){
+                                    return sdf.format(dt);
+                                }
+                                return super.formatLabel(value, isValueX);
+                            }
+                        });
+
+
+                        double thres = 1.3;
+                        if(thres > y) {
+
+                            dialog.setContentView(R.layout.pop_window);
+                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            dialog.show();
+                        }
+                    }//if
+                }
+                catch (ParseException e) {
                     e.printStackTrace();
                 }
+
+
+                 //  long x = new Date().getTime();
+                 //  long x = Long.parseLong(value.time);
+                // series.appendData(new DataPoint(x,y), true, 13000 );
+
             }//ondatachange
 
 
@@ -133,12 +161,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-
-
     }//showuserdata
-
-
-
 
 
 }

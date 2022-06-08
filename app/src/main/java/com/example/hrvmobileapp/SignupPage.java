@@ -1,28 +1,36 @@
 package com.example.hrvmobileapp;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hrvmobileapp.databinding.SignupPageBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public class SignupPage extends AppCompatActivity   {
 
     private SignupPageBinding binding_sign;
     private FirebaseAuth mAuth;
-
+  //  FloatingActionButton  fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +42,20 @@ public class SignupPage extends AppCompatActivity   {
 
         mAuth = FirebaseAuth.getInstance();
 
+        binding_sign.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dateDialog = new DatePickerDialog(view.getContext(), onDateSetListener, mYear, mMonth, mDay);
+                dateDialog.getDatePicker().setMaxDate(new Date().getTime());
+                dateDialog.show();
+            }
+        });
 
-
-      binding_sign.signBtn.setOnClickListener(new View.OnClickListener() {
+        binding_sign.signBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signUp();
@@ -44,17 +63,33 @@ public class SignupPage extends AppCompatActivity   {
                 startActivity(intent);
             }
         });
- /*
-        binding_sign.logBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(),LoginPage.class);
-                startActivity(intent);
-            }
-        });
-*/
     }//onCreate
+    private DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                Calendar c = Calendar.getInstance();
+                c.set(Calendar.YEAR, year);
+                c.set(Calendar.MONTH, month);
+                c.set(Calendar.DAY_OF_MONTH, day);
+                String format = new SimpleDateFormat("dd MMM YYYY").format(c.getTime());
+                binding_sign.etAge.setText(Integer.toString(calculateAge(c.getTimeInMillis())));
+
+        }
+    };
+    int calculateAge (long date){
+        Calendar dob = Calendar.getInstance();
+        dob.setTimeInMillis(date);
+
+        Calendar today = Calendar.getInstance();
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+        if(today.get(Calendar.DAY_OF_MONTH) < dob.get(Calendar.DAY_OF_MONTH)){
+            age--;
+        }
+        return age;
+
+    }
+
 
 
     private void signUp(){
