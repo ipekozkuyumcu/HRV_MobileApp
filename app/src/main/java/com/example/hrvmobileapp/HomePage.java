@@ -1,12 +1,16 @@
 package com.example.hrvmobileapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,8 +41,16 @@ import java.util.Set;
 import java.util.TreeMap;
 
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements DialogFragment.OnInputListener {
+
+
+    public TextView mInputDisplay, tvinput;
+    public String mInput;
+
+
+
     private HomePageBinding binding_home;
+
 
     FirebaseDatabase firebaseDatabase;
 
@@ -58,6 +70,10 @@ public class HomePage extends AppCompatActivity {
         //   value_string = new ArrayList<>();
         //   value_double= new ArrayList<>();
 
+        mInputDisplay = findViewById(R.id.input_display);
+        mInputDisplay.setTextSize(12);
+
+        tvinput = findViewById(R.id.input);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -85,17 +101,17 @@ public class HomePage extends AppCompatActivity {
         series.setShape(PointsGraphSeries.Shape.POINT);
         series.setSize(8);
         graphView.getViewport().setScalableY(true);
-        series.setColor(Color.rgb(117,53,173));
+        series.setColor(Color.rgb(117, 53, 173));
         graphView.getGridLabelRenderer().setTextSize(12f);
         graphView.getGridLabelRenderer().setGridColor(Color.BLACK);
         graphView.getGridLabelRenderer().setVerticalLabelsColor(Color.BLACK);
         graphView.getGridLabelRenderer().setHorizontalLabelsColor(Color.BLACK);
 
 
-        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
+        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
-                if(isValueX){
+                if (isValueX) {
                     return sdf.format(value);
                 }
                 return super.formatLabel(value, isValueX);
@@ -112,8 +128,8 @@ public class HomePage extends AppCompatActivity {
         });
     }//oncreate
 
-    private void showHrvData(){
-                DatabaseReference reference = firebaseDatabase.getReference("hrvData")
+    private void showHrvData() {
+        DatabaseReference reference = firebaseDatabase.getReference("hrvData")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -121,8 +137,7 @@ public class HomePage extends AppCompatActivity {
                 try {
                     graphView.addSeries(series);
 
-                    for (DataSnapshot i :  snapshot.getChildren())
-                    {
+                    for (DataSnapshot i : snapshot.getChildren()) {
                         HrvData value = i.getValue(HrvData.class);
                         if (value != null) {
                             if (!htSeries.containsKey("01.01.2000 " + value.time)) {
@@ -131,7 +146,7 @@ public class HomePage extends AppCompatActivity {
                         }
                     }
 
-                    for (String key: new TreeMap<>(htSeries).keySet()) {
+                    for (String key : new TreeMap<>(htSeries).keySet()) {
                         try {
                             Date dt = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS")
                                     .parse(key);
@@ -142,12 +157,12 @@ public class HomePage extends AppCompatActivity {
                         }
                     }
 
-                    new Handler().postDelayed(new Runnable(){
+                    new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             checkAlerts();
                         }
-                    }, 5000);
+                    }, 8000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -162,23 +177,35 @@ public class HomePage extends AppCompatActivity {
     }//showuserdata
 
     public void checkAlerts() {
-        for (String key: new TreeMap<>(htSeries).keySet()) {
+        for (String key : new TreeMap<>(htSeries).keySet()) {
             double y = htSeries.get(key);
-            double thres1 = 1.8;
-            double thres2 = 0.1;
+            double thres1 = 1.81;
+            double thres2 = 0.8;
             if (thres1 < y) {
-                dialog.setContentView(R.layout.pop_window);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                tvinput.setVisibility(View.VISIBLE);
+                DialogFragment dialog = new DialogFragment();
+                dialog.show(getFragmentManager(), "MyCustomDialog");
                 break;
-            }
-            else if (thres2 > y) {
-                dialog.setContentView(R.layout.pop_window);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-                break;
+
+            }else if (thres2 > y) {
+                    dialog.setContentView(R.layout.dialogfragmentdown);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.show();
             }
         }
+
+
+    }//check
+
+    private void setInputToTextView() {
+        mInputDisplay.setText(mInput);
+    }
+
+    @Override
+    public void sendInput(String input) {
+        Log.d(TAG, "sendInput: got the input: " + input);
+        mInput = input;
+        setInputToTextView();
     }
 
 }

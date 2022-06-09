@@ -52,6 +52,30 @@
         android:id="@+id/graphId"
         app:layout_constraintTop_toBottomOf="@id/dummy_view"
         />
+        <TextView
+            android:id="@+id/input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="What happened, while HRV was high??"
+            android:visibility="gone"
+            android:textColor="#000"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/graphId" />
+
+        <TextView
+            android:id="@+id/input_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/input" />
+
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -60,9 +84,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:gravity="center"
-            android:text="HR and HRV Data"
+            android:text="HRV Data"
             android:textColor="@color/text"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.511"

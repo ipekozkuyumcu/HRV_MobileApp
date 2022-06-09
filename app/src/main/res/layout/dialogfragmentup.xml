@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/frame"
+        android:padding="5dp">
+
+        <TextView
+
+            android:id="@+id/heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your HRV were very high!"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/dummy"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@id/heading" />
+
+        <TextView
+            android:id="@+id/ask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dummy"
+            android:text="What happened?"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ask"
+            android:background="@drawable/frame2"
+            android:layout_marginTop="20dp"
+            android:hint="Let me know.."
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/action_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:text="OK"
+            android:textColor="@color/mycolor"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/action_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:text="CANCEL"
+            android:textColor="@color/mycolor"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</RelativeLayout>
