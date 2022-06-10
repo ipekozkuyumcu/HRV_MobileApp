@@ -15,7 +15,7 @@
             android:id="@+id/heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your HRV were very low!"
+            android:text="There is no significant HRV change is detected for a while."
             android:textColor="#000"
             android:textSize="18sp" />
 
@@ -32,11 +32,9 @@
             android:layout_below="@id/dummy"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:text="Your HRV is significantly low, you should be careful about your health!"
+            android:text="Your HRV is significantly low, you should be careful about your health! Decrease in HRV can be a sign of poor prognosis."
             android:textColor="#000"
             android:textSize="18sp" />
-
-
 
 
     </RelativeLayout>

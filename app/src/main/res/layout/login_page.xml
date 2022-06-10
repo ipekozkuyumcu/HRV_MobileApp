@@ -29,48 +29,49 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
-            android:textColor="@color/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="192dp"
             android:gravity="center"
-            android:textSize="20sp"
             android:text="Welcome to HRV Necklace"
-            android:layout_marginTop="191dp"
+            android:textColor="@color/text"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.55"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:textColor="@color/text"
             android:id="@+id/title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:gravity="center"
-            android:textSize="20sp"
             android:text="Mobile App"
-            android:layout_marginTop="30dp"
+            android:textColor="@color/text"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.537"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/title" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:textColor="@color/text"
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="68dp"
             android:text="Email :"
+            android:textColor="@color/text"
             android:textSize="15sp"
-            app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/title1" />
 
-
-
-            <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
                 android:textColor="@color/text"
                 android:id="@+id/et_mail"
                 android:layout_width="178dp"
@@ -81,7 +82,8 @@
                 android:singleLine="true"
                 android:layout_marginTop="60dp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/title1"/>
+                app:layout_constraintTop_toBottomOf="@+id/title1"
+                />
 
 
 
@@ -109,37 +111,37 @@
                 android:background="@drawable/ic_e_mailframe"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@id/et_mail"/>
-
+                app:layout_constraintTop_toBottomOf="@id/et_mail"
+                />
 
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="LOGIN"
-            app:layout_constraintTop_toBottomOf="@id/et_password"
-            app:layout_constraintStart_toStartOf="@+id/constraint"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            android:textSize="15sp"
-            android:src="@drawable/ic_login"
+            android:layout_marginTop="52dp"
             android:background="@color/white"
-            />
+            android:src="@drawable/ic_login"
+            android:text="LOGIN"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintHorizontal_bias="0.577"
+            app:layout_constraintStart_toStartOf="@+id/constraint"
+            app:layout_constraintTop_toBottomOf="@id/et_password" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="SIGN UP "
-            app:layout_constraintTop_toBottomOf="@id/btn_login"
-            app:layout_constraintStart_toStartOf="@+id/constraint"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            android:textSize="15sp"
-            android:src="@drawable/ic_signup"
+            android:layout_marginTop="12dp"
             android:background="@color/white"
-            />
+            android:src="@drawable/ic_signup"
+            android:text="SIGN UP "
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintHorizontal_bias="0.578"
+            app:layout_constraintStart_toStartOf="@+id/constraint"
+            app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

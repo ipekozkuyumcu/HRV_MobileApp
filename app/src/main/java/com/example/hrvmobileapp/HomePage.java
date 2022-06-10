@@ -160,9 +160,16 @@ public class HomePage extends AppCompatActivity implements DialogFragment.OnInpu
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            checkAlerts();
+                            checkAlerts2();
                         }
                     }, 8000);
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            checkAlerts();
+                        }
+                    }, 30000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -180,17 +187,26 @@ public class HomePage extends AppCompatActivity implements DialogFragment.OnInpu
         for (String key : new TreeMap<>(htSeries).keySet()) {
             double y = htSeries.get(key);
             double thres1 = 1.81;
-            double thres2 = 0.8;
             if (thres1 < y) {
                 tvinput.setVisibility(View.VISIBLE);
                 DialogFragment dialog = new DialogFragment();
                 dialog.show(getFragmentManager(), "MyCustomDialog");
                 break;
 
-            }else if (thres2 > y) {
-                    dialog.setContentView(R.layout.dialogfragmentdown);
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    dialog.show();
+            }
+        }
+
+
+    }//check
+
+    public void checkAlerts2() {
+        for (String key : new TreeMap<>(htSeries).keySet()) {
+            double y = htSeries.get(key);
+            double thres2 = 0.8;
+            if (thres2 > y) {
+                dialog.setContentView(R.layout.dialogfragmentdown);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
             }
         }
 

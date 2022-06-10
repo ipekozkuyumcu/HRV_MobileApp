@@ -15,7 +15,7 @@
             android:id="@+id/heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your HRV were very high!"
+            android:text="There has been a significant change in your HRV. "
             android:textColor="#000"
             android:textSize="18sp" />
 
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/dummy"
-            android:text="What happened?"
+            android:text="Tell us what you have been up to. (Drinking coffee, jogging, etc.)"
             android:textColor="#000"
             android:textSize="18sp" />
 
@@ -39,9 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ask"
-            android:background="@drawable/frame2"
             android:layout_marginTop="20dp"
-            android:hint="Let me know.."
+            android:background="@drawable/frame2"
+            android:hint="Enter your answer here."
             android:textColor="#000" />
 
         <TextView

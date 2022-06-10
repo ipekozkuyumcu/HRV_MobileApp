@@ -29,38 +29,34 @@
             app:layout_constraintGuide_percent="0.90"/>
 
 
-
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="168dp"
             android:gravity="center"
-            android:textSize="20sp"
             android:text="Sign up"
-            android:layout_marginTop="120dp"
-            android:textStyle="bold"
             android:textColor="@color/text"
-            app:layout_constraintTop_toTopOf="@id/constraint"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
+            app:layout_constraintTop_toTopOf="@id/constraint" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_email"
-            android:textColor="@color/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="64dp"
             android:text="Email :"
+            android:textColor="@color/text"
             android:textSize="15sp"
-            app:layout_constraintHorizontal_bias="0.429"
             app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/title1"/>
+            app:layout_constraintTop_toBottomOf="@id/title1" />
 
-
-            <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
                 android:textColor="@color/text"
                 android:id="@+id/et_mail"
                 android:layout_width="178dp"
@@ -102,20 +98,18 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:textColor="@color/text"
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             android:text="Name :"
+            android:textColor="@color/text"
             android:textSize="15sp"
-            app:layout_constraintHorizontal_bias="0.429"
             app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/tv_password"
-            />
+            app:layout_constraintTop_toBottomOf="@id/tv_password" />
 
-
-            <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
                 android:textColor="@color/text"
                 android:id="@+id/et_name"
                 android:layout_width="178dp"
@@ -130,19 +124,18 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:textColor="@color/text"
             android:id="@+id/tv_surname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="24dp"
             android:text="Surname :"
+            android:textColor="@color/text"
             android:textSize="15sp"
-            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-
-            <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
                 android:textColor="@color/text"
                 android:id="@+id/et_surname"
                 android:layout_width="176dp"
@@ -155,20 +148,20 @@
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintTop_toBottomOf="@id/et_name"/>
 
+
         <androidx.appcompat.widget.AppCompatTextView
-            android:textColor="@color/text"
             android:id="@+id/tv_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
             android:text="Height :"
+            android:textColor="@color/text"
             android:textSize="15sp"
-            app:layout_constraintHorizontal_bias="0.433"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_surname" />
 
-
-            <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_height"
                 android:textColor="@color/text"
                 android:layout_width="176dp"
@@ -183,17 +176,16 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:textColor="@color/text"
             android:id="@+id/tv_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:textSize="15sp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="28dp"
             android:text="Weight"
-            app:layout_constraintHorizontal_bias="0.495"
+            android:textColor="@color/text"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_height" />
-
 
         <androidx.appcompat.widget.AppCompatEditText
             android:textColor="@color/text"
@@ -208,19 +200,18 @@
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintTop_toBottomOf="@id/et_height" />
 
+
         <androidx.appcompat.widget.AppCompatTextView
-            android:textColor="@color/text"
             android:id="@+id/tv_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="28dp"
             android:text="Age :"
+            android:textColor="@color/text"
             android:textSize="15sp"
-            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/tv_weight"
-            android:layout_marginBottom="140dp"/>
-
+            app:layout_constraintTop_toBottomOf="@id/tv_weight" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:textColor="@color/text"
@@ -238,18 +229,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/et_age"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            android:gravity="center_horizontal">
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/et_age">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/sign_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="1dp"
                 android:background="@color/white"
                 android:src="@drawable/ic_save"
                 android:text="Save "

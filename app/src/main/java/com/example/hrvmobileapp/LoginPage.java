@@ -60,7 +60,7 @@ public class LoginPage extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginPage.this, "Lütfen giriş işlemi yapılırken bekleyiniz", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginPage.this, "Please wait...", Toast.LENGTH_LONG).show();
                 logIn();
 
             }
@@ -71,12 +71,7 @@ public class LoginPage extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if (user != null) {
-                    Toast.makeText(LoginPage.this, "We have user", Toast.LENGTH_LONG).show();
 
-                } else {
-                    Toast.makeText(LoginPage.this, "There is no user", Toast.LENGTH_LONG).show();
-                }
 
             }
         };
